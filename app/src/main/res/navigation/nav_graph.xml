@@ -2,9 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity2">
+    app:startDestination="@id/mainActivity1">
+
     <activity
-        android:id="@+id/mainActivity2"
-        android:name="com.example.meuaumigo.MainActivity"
+        android:id="@+id/mainActivity1"
+        android:name="com.example.meuaumigo.application.MainActivity"
         android:label="MainActivity" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.meuaumigo.login.LoginActivity"
+        android:label="LoginActivity" />
 </navigation>

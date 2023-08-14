@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightblue">
+
+    <ImageView
+        android:id="@+id/imgLogin"
+        android:layout_width="220dp"
+        android:layout_height="190dp"
+        android:layout_margin="64dp"
+        android:background="@drawable/ic_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/etLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="64dp"
+        android:hint="@string/emailHint"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLogin"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="16dp"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:hint="@string/passwordHint"
+        android:textColorHint="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etLogin"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="80dp"
+        android:background="@drawable/circular_field"
+        android:textColor="@color/lightblue_300"
+        android:text="@string/btnSignIn"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword"
+        />
+
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="16dp"
+        android:textSize="16sp"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue_200"
+        android:textColor="@color/white"
+        android:text="@string/btnLogIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="4dp"
+        android:padding="12dp"
+        android:text="@string/forgotPassword"
+        android:gravity="center"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/lightblue_300"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue"
+        app:layout_constraintTop_toBottomOf="@id/btnLogIn"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

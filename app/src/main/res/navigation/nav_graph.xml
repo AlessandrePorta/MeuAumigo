@@ -2,14 +2,35 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity1">
+    app:startDestination="@id/mainActivity">
 
     <activity
-        android:id="@+id/mainActivity1"
+        android:id="@+id/mainActivity"
         android:name="com.example.meuaumigo.application.MainActivity"
         android:label="MainActivity" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.meuaumigo.login.LoginActivity"
+        android:name="com.example.meuaumigo.home.login.LoginActivity"
         android:label="LoginActivity" />
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.meuaumigo.home.homemain.HomeActivity"
+        android:label="HomeActivity">
+    </activity>
+
+    <fragment
+        android:id="@+id/homeMainFragment"
+        android:name="com.example.meuaumigo.home.homemain.HomeMainFragment"
+        android:label="HomeMainFragment" >
+        <action
+            android:id="@+id/action_homeMainFragment_to_homeProfileFragment"
+            app:destination="@id/homeProfileFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeProfileFragment"
+        android:name="com.example.meuaumigo.home.homemain.HomeProfileFragment"
+        android:label="HomeProfileFragment" />
 </navigation>

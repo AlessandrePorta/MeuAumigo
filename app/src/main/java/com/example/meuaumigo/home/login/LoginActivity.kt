@@ -1,4 +1,4 @@
-package com.example.meuaumigo.login
+package com.example.meuaumigo.home.login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

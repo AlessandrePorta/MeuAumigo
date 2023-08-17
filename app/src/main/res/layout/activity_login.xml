@@ -5,15 +5,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightblue">
 
+    <TextView
+        android:id="@+id/ibClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="X"
+        android:textSize="35sp"
+        android:textColor="@color/lightblue_300"
+        android:gravity="center"
+        android:backgroundTint="@color/lightblue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <ImageView
         android:id="@+id/imgLogin"
         android:layout_width="220dp"
         android:layout_height="190dp"
-        android:layout_margin="64dp"
-        android:background="@drawable/ic_login"
+
+        android:background="@drawable/ic_main_pet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ibClose"
         />
 
     <EditText

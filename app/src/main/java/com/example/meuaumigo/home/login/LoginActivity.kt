@@ -13,5 +13,13 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        init()
+    }
+
+    private fun init(){
+        binding.ibClose.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 }

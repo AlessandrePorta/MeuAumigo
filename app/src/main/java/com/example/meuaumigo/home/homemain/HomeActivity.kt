@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.onNavDestinationSelected
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.ActivityHomeBinding
@@ -23,26 +25,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        supportFragmentManager.beginTransaction().replace(R.id.fcFragment, HomeMainFragment.newInstance()).commit()
+        navController().navigate(R.id.homeMainFragment)
         navigateSelector()
     }
 
     private fun navigateSelector(){
         binding.bnHome.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home -> replaceFragment(HomeMainFragment.newInstance())
-                R.id.profile -> replaceFragment(HomeProfileFragment.newInstance())
+                R.id.home -> navController().navigate(R.id.homeMainFragment)
+                R.id.profile -> navController().navigate(R.id.homeProfileFragment)
                 else -> {}
             }
             true
         }
     }
 
-    private fun replaceFragment(fragment : Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fcFragment, fragment)
-        fragmentTransaction.commit()
-    }
+    private fun navController() = ((supportFragmentManager.findFragmentById(R.id.fcFragment)) as NavHostFragment).navController
 
 }

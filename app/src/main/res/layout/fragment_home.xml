@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/ivAdoptMe"
+        android:id="@+id/ivNeedAHomeMe"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_margin="32dp"
@@ -32,7 +32,7 @@
         android:backgroundTint="@color/lightblue_300"
         android:gravity="center"
         android:background="@drawable/circular_field"
-        app:layout_constraintTop_toBottomOf="@id/ivAdoptMe"
+        app:layout_constraintTop_toBottomOf="@id/ivNeedAHomeMe"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

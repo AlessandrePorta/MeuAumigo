@@ -34,7 +34,7 @@ class HomeMainFragment : Fragment() {
     }
 
     private fun init() {
-        binding.ivAdoptMe.setOnClickListener {
+        binding.ivNeedAHomeMe.setOnClickListener {
             findNavController().navigate(R.id.action_homeMainFragment_to_loginActivity)
         }
     }

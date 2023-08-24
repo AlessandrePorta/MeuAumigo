@@ -23,7 +23,6 @@
         android:id="@+id/imgLogin"
         android:layout_width="220dp"
         android:layout_height="190dp"
-
         android:background="@drawable/ic_main_pet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

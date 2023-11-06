@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightblue"
+    >
+
+    <ImageView
+        android:id="@+id/ivPetBackground"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:background="@drawable/bottom_circular_field"
+        android:backgroundTint="@color/lightblue_300"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/ivPet"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_main_pet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/ibClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:padding="16dp"
+        android:text="X"
+        android:textSize="35sp"
+        android:textColor="@color/lightblue"
+        android:gravity="center"
+        android:backgroundTint="@color/lightblue_300"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <EditText
+        android:id="@+id/etPetName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue_300"
+        app:layout_constraintTop_toBottomOf="@id/ivPetBackground"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/white"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:textSize="20sp"
+        android:hint="@string/looking_for_home_name"
+        android:textColorHint="@color/white"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/etPetPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_field"
+        android:backgroundTint="@color/lightblue_300"
+        app:layout_constraintTop_toBottomOf="@id/etPetName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="24dp"
+        android:hint="@string/looking_for_home_phone"
+        android:textSize="20sp"
+        android:inputType="phone"
+        />
+
+    <EditText
+        android:id="@+id/etPetDescription"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/circular_description_box"
+        android:backgroundTint="@color/lightblue_300"
+        app:layout_constraintTop_toBottomOf="@id/etPetPhone"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="24dp"
+        android:hint="@string/looking_for_home_description"
+        android:textSize="20sp"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:inputType="textLongMessage"
+        android:maxLines="4"
+        android:gravity="start"
+        android:textAlignment="textStart"
+        />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginVertical="36dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-black"
+        android:background="@drawable/circular_field"
+        android:textColor="@color/lightblue_300"
+        android:text="@string/looking_for_home_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPetDescription"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

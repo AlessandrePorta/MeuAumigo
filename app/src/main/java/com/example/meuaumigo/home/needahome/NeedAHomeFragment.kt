@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
-import com.example.meuaumigo.databinding.ItemPetNeedAHomeBinding
+import com.example.meuaumigo.home.homemain.HomeActivity
 import com.example.meuaumigo.home.needahome.model.PetVO
 
 class NeedAHomeFragment : Fragment() {
@@ -39,6 +38,7 @@ class NeedAHomeFragment : Fragment() {
     private fun init(){
         binding.ibClose.setOnClickListener {
             findNavController().popBackStack()
+            (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
         setupPetList(pets())

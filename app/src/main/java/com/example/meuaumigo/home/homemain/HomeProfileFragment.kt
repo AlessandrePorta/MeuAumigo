@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentProfileBinding
 
 class HomeProfileFragment : Fragment() {
-
-    companion object {
-        fun newInstance() : HomeProfileFragment = HomeProfileFragment()
-    }
 
     private lateinit var binding : FragmentProfileBinding
 
@@ -32,6 +30,9 @@ class HomeProfileFragment : Fragment() {
     }
 
     private fun init(){
-
+        var notLogged = true
+        if(notLogged){
+            findNavController().navigate(R.id.action_homeProfileFragment_to_loginFragment)
+        }
     }
 }

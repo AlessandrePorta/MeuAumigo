@@ -13,10 +13,6 @@ class HomeMainFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    companion object {
-        fun newInstance(): HomeMainFragment = HomeMainFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,9 +32,11 @@ class HomeMainFragment : Fragment() {
     private fun init() {
         binding.ivNeedAHomeMe.setOnClickListener {
             findNavController().navigate(R.id.action_homeMainFragment_to_needAHomeFragment)
+            (activity as HomeActivity).setNavigateSelectorInvisible()
         }
-        binding.ivWantAHome.setOnClickListener {
-            findNavController().navigate(R.id.action_homeMainFragment_to_loginActivity)
+        binding.ivLookingForHome.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMainFragment_to_lookingForHomeFragment)
+            (activity as HomeActivity).setNavigateSelectorInvisible()
         }
     }
 

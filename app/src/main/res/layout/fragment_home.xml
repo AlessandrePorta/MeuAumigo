@@ -15,14 +15,14 @@
         android:textColor="@color/lightblue_300"
         android:gravity="center"
         android:background="@drawable/circular_field"
-        app:layout_constraintBottom_toTopOf="@id/ivWantAHome"
+        app:layout_constraintBottom_toTopOf="@id/ivLookingForHome"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
     <TextView
-        android:id="@+id/ivWantAHome"
+        android:id="@+id/ivLookingForHome"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_margin="32dp"

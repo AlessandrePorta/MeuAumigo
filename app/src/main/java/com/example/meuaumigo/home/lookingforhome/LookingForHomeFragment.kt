@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.login
+package com.example.meuaumigo.home.lookingforhome
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.meuaumigo.databinding.FragmentLoginBinding
+import com.example.meuaumigo.databinding.FragmentLookingForHomeBinding
+import com.example.meuaumigo.home.homemain.HomeActivity
 
-class LoginFragment : Fragment() {
+class LookingForHomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginBinding
+    private lateinit var binding : FragmentLookingForHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,7 +19,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentLookingForHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,6 +32,11 @@ class LoginFragment : Fragment() {
     private fun init(){
         binding.ibClose.setOnClickListener {
             findNavController().popBackStack()
+            (activity as HomeActivity).setNavigateSelectorVisible()
+        }
+        binding.btnConfirm.setOnClickListener {
+            findNavController().popBackStack()
+            (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
     }

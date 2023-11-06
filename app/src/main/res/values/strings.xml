@@ -20,4 +20,10 @@
     <string name="profile_phone">Telefone</string>
     <string name="profile_logout">Sair</string>
 
+    //LookingForHome
+    <string name="looking_for_home_name">Nome do pet</string>
+    <string name="looking_for_home_phone">Telefone do pet</string>
+    <string name="looking_for_home_description">Descrição do pet</string>
+    <string name="looking_for_home_confirm">Confirmar</string>
+
 </resources>

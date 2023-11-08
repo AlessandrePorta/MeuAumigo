@@ -1,3 +1,3 @@
 package com.example.meuaumigo.home.needahome.model
 
-data class NeedAHomePetVO (val petName : String, val petImg : Int)
+data class NeedAHomePetVO (var petName : String, var petImg : Int)

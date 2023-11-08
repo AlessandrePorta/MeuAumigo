@@ -43,9 +43,9 @@ class LookingForHomeFragment : Fragment() {
         binding.btnConfirm.setOnClickListener {
             createPetData(
                 LookingForHomePetVO(hashMapOf(
-                    "name" to binding.etPetName.toString(),
-                    "phone" to binding.etPetPhone.toString(),
-                    "description" to binding.etPetDescription.toString()
+                    "name" to binding.etPetName.text.toString(),
+                    "phone" to binding.etPetPhone.text.toString(),
+                    "description" to binding.etPetDescription.text.toString()
                 ))
             )
             (activity as HomeActivity).setNavigateSelectorVisible()
@@ -55,11 +55,12 @@ class LookingForHomeFragment : Fragment() {
 
     private fun createPetData(pets: LookingForHomePetVO) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("pets").document("Pets")
+        db.collection("pets").document(binding.etPetName.text.toString())
             .set(pets)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Sucesso!", Toast.LENGTH_LONG).show()
                 Log.d("", "Sucesso!")
+                findNavController().popBackStack()
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Erro!", Toast.LENGTH_LONG).show()

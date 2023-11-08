@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.home.homemain.HomeActivity
-import com.example.meuaumigo.home.needahome.model.PetVO
+import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
 
 class NeedAHomeFragment : Fragment() {
 
@@ -44,15 +44,15 @@ class NeedAHomeFragment : Fragment() {
         setupPetList(pets())
     }
 
-    private fun pets() : MutableList<PetVO>{
-        val pets = ArrayList<PetVO>()
-        pets.add(PetVO("Jorginho", R.drawable.ic_main_pet))
-        pets.add(PetVO("Cleiton", R.drawable.ic_main_pet))
-        pets.add(PetVO("Fofo", R.drawable.ic_main_pet))
+    private fun pets() : MutableList<NeedAHomePetVO>{
+        val pets = ArrayList<NeedAHomePetVO>()
+        pets.add(NeedAHomePetVO("Jorginho", R.drawable.ic_main_pet))
+        pets.add(NeedAHomePetVO("Cleiton", R.drawable.ic_main_pet))
+        pets.add(NeedAHomePetVO("Fofo", R.drawable.ic_main_pet))
         return pets
     }
 
-    private fun setupPetList(petResponse: MutableList<PetVO>) {
+    private fun setupPetList(petResponse: MutableList<NeedAHomePetVO>) {
         val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = NeedAHomeAdapter(petResponse, requireContext())
@@ -60,7 +60,7 @@ class NeedAHomeFragment : Fragment() {
         initAdapter(petResponse)
     }
 
-    private fun initAdapter(response: MutableList<PetVO>) {
+    private fun initAdapter(response: MutableList<NeedAHomePetVO>) {
         val rvList = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
 
         petAdapter = NeedAHomeAdapter(

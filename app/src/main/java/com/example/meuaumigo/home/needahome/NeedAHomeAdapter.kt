@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meuaumigo.R
-import com.example.meuaumigo.home.needahome.model.PetVO
+import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
 
 class NeedAHomeAdapter(
-    val listPet: MutableList<PetVO>,
+    val listPet: MutableList<NeedAHomePetVO>,
     val context: Context
 ) : RecyclerView.Adapter<NeedAHomeAdapter.PetViewHolder>() {
 
@@ -35,7 +35,7 @@ class NeedAHomeAdapter(
         val name = itemView.findViewById<TextView>(R.id.tvPetName)
         val img = itemView.findViewById<ImageView>(R.id.imgPet)
 
-        fun bind(item: PetVO) {
+        fun bind(item: NeedAHomePetVO) {
             name.text = item.petName
             Glide.with(itemView.context).load(item.petImg).into(img)
         }

@@ -6,17 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
+        FirebaseApp.initializeApp(this)
         init()
     }
 

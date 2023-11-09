@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,18 +13,16 @@ import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.home.homemain.HomeActivity
 import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
-import kotlinx.coroutines.tasks.await
-import kotlin.concurrent.timerTask
+import com.example.meuaumigo.home.needahome.model.Pets
+import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
 
 class NeedAHomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentNeedAHomeBinding
+    private lateinit var binding: FragmentNeedAHomeBinding
 
-    private lateinit var petAdapter : NeedAHomeAdapter
+    private lateinit var petAdapter: NeedAHomeAdapter
 
-    val pets = mutableListOf<NeedAHomePetVO>()
+    private lateinit var firebaseViewModel: FirebaseStorageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,29 +40,16 @@ class NeedAHomeFragment : Fragment() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
+        firebaseViewModel = ViewModelProviders.of(this)[FirebaseStorageViewModel::class.java]
+
         binding.ibClose.setOnClickListener {
             findNavController().popBackStack()
             (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
-        pets()
-        setupPetList(pets)
-    }
-
-    private fun pets(){
-        val db = Firebase.firestore
-        db.collection("pets")
-            .get()
-                .addOnSuccessListener {
-                for (document in it) {
-                    pets.add(NeedAHomePetVO(document.id, R.drawable.ic_main_pet))
-                }
-            }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Erro ao carregar", Toast.LENGTH_LONG).show()
-                }
-
+        firebaseViewModel.getPets()
+        firebaseViewModel.getPets.value?.let { setupPetList() }
     }
 
     private fun setupPetList(petResponse: MutableList<NeedAHomePetVO>) {
@@ -82,6 +67,7 @@ class NeedAHomeFragment : Fragment() {
             response,
             requireContext()
         )
+
 
         rvList.adapter = petAdapter
     }

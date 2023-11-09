@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meuaumigo.R
 import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
+import com.example.meuaumigo.home.needahome.model.Pets
 
 class NeedAHomeAdapter(
-    val listPet: MutableList<NeedAHomePetVO>,
+    val listPet: HashMap<Pets, Unit>,
     val context: Context
 ) : RecyclerView.Adapter<NeedAHomeAdapter.PetViewHolder>() {
 
@@ -23,7 +24,7 @@ class NeedAHomeAdapter(
     }
 
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
-        val pets = listPet[position]
+        val pets = listPet
         holder.bind(pets)
     }
 
@@ -33,11 +34,11 @@ class NeedAHomeAdapter(
 
     inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.tvPetName)
-        val img = itemView.findViewById<ImageView>(R.id.imgPet)
+//        val img = itemView.findViewById<ImageView>(R.id.imgPet)
 
         fun bind(item: NeedAHomePetVO) {
             name.text = item.petName
-            Glide.with(itemView.context).load(item.petImg).into(img)
+//            Glide.with(itemView.context).load(item.petImg).into(img)
         }
     }
 }

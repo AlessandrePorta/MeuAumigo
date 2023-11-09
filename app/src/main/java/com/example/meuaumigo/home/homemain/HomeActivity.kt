@@ -3,14 +3,20 @@ package com.example.meuaumigo.home.homemain
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.ActivityMainBinding
+import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
 import com.google.firebase.FirebaseApp
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
+
+    private lateinit var viewModel : FirebaseStorageViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,6 +30,8 @@ class HomeActivity : AppCompatActivity() {
     private fun init(){
         navController().navigate(R.id.homeMainFragment)
         navigateSelector()
+
+        viewModel = ViewModelProviders.of(this)[FirebaseStorageViewModel::class.java]
     }
 
     private fun navigateSelector(){

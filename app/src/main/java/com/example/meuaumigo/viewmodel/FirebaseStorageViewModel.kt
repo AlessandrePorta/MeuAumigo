@@ -4,32 +4,32 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.meuaumigo.home.needahome.model.Pets
+import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
 import com.example.meuaumigo.repository.FirebaseStorageRepository
-import com.google.firebase.firestore.EventListener
 
 class FirebaseStorageViewModel : ViewModel() {
 
-    var getPets : MutableLiveData<HashMap<Pets, Unit>?> = MutableLiveData()
+    var getPets : MutableLiveData<MutableList<NeedAHomePetVO>?> = MutableLiveData()
     var firebaseStorageRepository = FirebaseStorageRepository()
 
-    fun getPets(): HashMap<Pets, Unit>? {
-        firebaseStorageRepository.getPets().addSnapshotListener(EventListener { value, e ->
+    fun getPets(){
+        firebaseStorageRepository.getPets()
+            .addSnapshotListener { value, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
-                getPets.value = null
-                return@EventListener
+                return@addSnapshotListener
             }
 
-            val savedAddressList : HashMap<Pets, Unit>? = hashMapOf()
+            val pets = MutableLiveData<MutableList<String>?>()
             for (doc in value!!) {
-                val pets = doc.toObject(Pets::class.java)
-                savedAddressList?.get(pets)
+                doc.getString("name")?.let {
+                    pets.value?.add(it)
+                    getPets.value?.first()?.petName = pets.value?.first().toString()
+                }
             }
-            getPets.value = savedAddressList
-        })
+            Log.d(TAG, "Current cites in CA: $pets")
+        }
 
-        return getPets.value
     }
 
 }

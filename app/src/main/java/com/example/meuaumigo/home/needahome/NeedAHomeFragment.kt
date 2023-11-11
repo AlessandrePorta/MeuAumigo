@@ -13,7 +13,6 @@ import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.home.homemain.HomeActivity
 import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
-import com.example.meuaumigo.home.needahome.model.Pets
 import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
 
 class NeedAHomeFragment : Fragment() {
@@ -49,7 +48,7 @@ class NeedAHomeFragment : Fragment() {
         }
 
         firebaseViewModel.getPets()
-        firebaseViewModel.getPets.value?.let { setupPetList() }
+        firebaseViewModel.getPets.value?.let { setupPetList(it) }
     }
 
     private fun setupPetList(petResponse: MutableList<NeedAHomePetVO>) {

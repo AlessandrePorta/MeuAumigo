@@ -5,7 +5,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseStorageRepository() {
 
-    val TAG = "FIREBASE_REPOSITORY"
     var firestoreDB = FirebaseFirestore.getInstance()
 
     fun getPets() : CollectionReference {

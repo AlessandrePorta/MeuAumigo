@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.login
+package com.example.meuaumigo.ui.homemain
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.meuaumigo.databinding.FragmentLoginBinding
+import com.example.meuaumigo.R
+import com.example.meuaumigo.databinding.FragmentProfileBinding
 
-class LoginFragment : Fragment() {
+class HomeProfileFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginBinding
+    private lateinit var binding : FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,7 +19,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,10 +30,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun init(){
-        binding.ibClose.setOnClickListener {
-            findNavController().popBackStack()
+        var notLogged = true
+        if(notLogged){
+            findNavController().navigate(R.id.action_homeProfileFragment_to_loginFragment)
         }
-
     }
-
 }

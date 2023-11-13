@@ -1,9 +1,8 @@
-package com.example.meuaumigo.home.homemain
+package com.example.meuaumigo.ui.homemain
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.meuaumigo.R

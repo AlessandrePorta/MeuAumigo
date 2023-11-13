@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.lookingforhome
+package com.example.meuaumigo.ui.lookingforhome
 
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.meuaumigo.databinding.FragmentLookingForHomeBinding
-import com.example.meuaumigo.home.homemain.HomeActivity
-import com.example.meuaumigo.home.lookingforhome.model.LookingForHomePetVO
-import com.google.firebase.Firebase
+import com.example.meuaumigo.ui.homemain.HomeActivity
+import com.example.meuaumigo.model.HomePetVO
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
 
 class LookingForHomeFragment : Fragment() {
 
@@ -42,18 +40,18 @@ class LookingForHomeFragment : Fragment() {
         }
         binding.btnConfirm.setOnClickListener {
             createPetData(
-                LookingForHomePetVO(hashMapOf(
-                    "name" to binding.etPetName.text.toString(),
-                    "phone" to binding.etPetPhone.text.toString(),
-                    "description" to binding.etPetDescription.text.toString()
-                ))
+                HomePetVO(
+                    binding.etPetName.text.toString(),
+                    binding.etPetPhone.text.toString(),
+                    binding.etPetDescription.text.toString()
+                )
             )
             (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
     }
 
-    private fun createPetData(pets: LookingForHomePetVO) {
+    private fun createPetData(pets: HomePetVO) {
         val db = FirebaseFirestore.getInstance()
         db.collection("pets").document(binding.etPetName.text.toString())
             .set(pets)

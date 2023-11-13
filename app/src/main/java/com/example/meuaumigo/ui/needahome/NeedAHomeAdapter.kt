@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.needahome
+package com.example.meuaumigo.ui.needahome
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meuaumigo.R
-import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
+import com.example.meuaumigo.model.HomePetVO
 
 class NeedAHomeAdapter(
-    val listPet: MutableList<NeedAHomePetVO>,
+    val listPet: List<HomePetVO>,
     val context: Context
 ) : RecyclerView.Adapter<NeedAHomeAdapter.PetViewHolder>() {
 
@@ -33,7 +33,7 @@ class NeedAHomeAdapter(
         val name = itemView.findViewById<TextView>(R.id.tvPetName)
 //        val img = itemView.findViewById<ImageView>(R.id.imgPet)
 
-        fun bind(item: NeedAHomePetVO) {
+        fun bind(item: HomePetVO) {
             name.text = item.petName
 //            Glide.with(itemView.context).load(item.petImg).into(img)
         }

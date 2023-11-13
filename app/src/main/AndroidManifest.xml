@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MeuAumigo"
         tools:targetApi="31">
         <activity
-            android:name=".home.homemain.HomeActivity"
+            android:name=".ui.homemain.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.MeuAumigo">
             <intent-filter>

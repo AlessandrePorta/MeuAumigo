@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeMainFragment"
-        android:name="com.example.meuaumigo.home.homemain.HomeMainFragment"
+        android:name="com.example.meuaumigo.ui.homemain.HomeMainFragment"
         android:label="HomeMainFragment" >
         <action
             android:id="@+id/action_homeMainFragment_to_homeProfileFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeProfileFragment"
-        android:name="com.example.meuaumigo.home.homemain.HomeProfileFragment"
+        android:name="com.example.meuaumigo.ui.homemain.HomeProfileFragment"
         android:label="HomeProfileFragment" >
         <action
             android:id="@+id/action_homeProfileFragment_to_loginFragment"
@@ -28,14 +28,14 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.meuaumigo.home.login.LoginFragment"
+        android:name="com.example.meuaumigo.ui.login.LoginFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/needAHomeFragment"
-        android:name="com.example.meuaumigo.home.needahome.NeedAHomeFragment"
+        android:name="com.example.meuaumigo.ui.needahome.NeedAHomeFragment"
         android:label="NeedAHomeFragment" />
     <fragment
         android:id="@+id/lookingForHomeFragment"
-        android:name="com.example.meuaumigo.home.lookingforhome.LookingForHomeFragment"
+        android:name="com.example.meuaumigo.ui.lookingforhome.LookingForHomeFragment"
         android:label="LookingForHomeFragment" />
 </navigation>

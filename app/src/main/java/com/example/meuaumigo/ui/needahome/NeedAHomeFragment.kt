@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.needahome
+package com.example.meuaumigo.ui.needahome
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
-import com.example.meuaumigo.home.homemain.HomeActivity
-import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
-import com.example.meuaumigo.home.needahome.model.Pets
+import com.example.meuaumigo.model.HomePetVO
+import com.example.meuaumigo.ui.homemain.HomeActivity
 import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
+import com.google.firebase.firestore.toObjects
 
 class NeedAHomeFragment : Fragment() {
 
@@ -48,19 +48,23 @@ class NeedAHomeFragment : Fragment() {
             (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
-        firebaseViewModel.getPets.observe(requireActivity()) { setupPetList(it)}
+        firebaseViewModel.getPets.observe(requireActivity()) { it.addOnCompleteListener {
+            if(it.isSuccessful){
+                setupPetList(it.result.toObjects<HomePetVO>())
+            }
+        }}
         firebaseViewModel.fetchPets()
     }
 
-    private fun setupPetList(petResponse: Pets) {
+    private fun setupPetList(petResponse: List<HomePetVO>) {
         val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = NeedAHomeAdapter(petResponse.petInfo, requireContext())
+        recyclerView.adapter = NeedAHomeAdapter(petResponse, requireContext())
 
-        initAdapter(petResponse.petInfo)
+        initAdapter(petResponse)
     }
 
-    private fun initAdapter(response: MutableList<NeedAHomePetVO>) {
+    private fun initAdapter(response: List<HomePetVO>) {
         val rvList = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
 
         petAdapter = NeedAHomeAdapter(

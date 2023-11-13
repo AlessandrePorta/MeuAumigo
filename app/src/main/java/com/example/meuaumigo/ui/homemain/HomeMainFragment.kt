@@ -1,4 +1,4 @@
-package com.example.meuaumigo.home.homemain
+package com.example.meuaumigo.ui.homemain
 
 import android.os.Bundle
 import android.view.LayoutInflater

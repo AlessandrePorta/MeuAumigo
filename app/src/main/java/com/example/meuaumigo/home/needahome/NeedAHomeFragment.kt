@@ -13,6 +13,7 @@ import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.home.homemain.HomeActivity
 import com.example.meuaumigo.home.needahome.model.NeedAHomePetVO
+import com.example.meuaumigo.home.needahome.model.Pets
 import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
 
 class NeedAHomeFragment : Fragment() {
@@ -47,16 +48,16 @@ class NeedAHomeFragment : Fragment() {
             (activity as HomeActivity).setNavigateSelectorVisible()
         }
 
-        firebaseViewModel.getPets()
-        firebaseViewModel.getPets.value?.let { setupPetList(it) }
+        firebaseViewModel.getPets.observe(requireActivity()) { setupPetList(it)}
+        firebaseViewModel.fetchPets()
     }
 
-    private fun setupPetList(petResponse: MutableList<NeedAHomePetVO>) {
+    private fun setupPetList(petResponse: Pets) {
         val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = NeedAHomeAdapter(petResponse, requireContext())
+        recyclerView.adapter = NeedAHomeAdapter(petResponse.petInfo, requireContext())
 
-        initAdapter(petResponse)
+        initAdapter(petResponse.petInfo)
     }
 
     private fun initAdapter(response: MutableList<NeedAHomePetVO>) {

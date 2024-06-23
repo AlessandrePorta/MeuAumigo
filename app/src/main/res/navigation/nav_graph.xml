@@ -2,15 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeMainFragment">
+    app:startDestination="@id/onboardingFragment">
 
     <fragment
         android:id="@+id/homeMainFragment"
         android:name="com.example.meuaumigo.ui.homemain.HomeMainFragment"
-        android:label="HomeMainFragment" >
-        <action
-            android:id="@+id/action_homeMainFragment_to_homeProfileFragment"
-            app:destination="@id/homeProfileFragment" />
+        android:label="HomeMainFragment">
         <action
             android:id="@+id/action_homeMainFragment_to_lookingForHomeFragment"
             app:destination="@id/lookingForHomeFragment" />
@@ -20,16 +17,19 @@
     </fragment>
     <fragment
         android:id="@+id/homeProfileFragment"
-        android:name="com.example.meuaumigo.ui.homemain.HomeProfileFragment"
-        android:label="HomeProfileFragment" >
-        <action
-            android:id="@+id/action_homeProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:name="com.example.meuaumigo.ui.profile.HomeProfileFragment"
+        android:label="HomeProfileFragment" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.meuaumigo.ui.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_homeMainFragment"
+            app:destination="@id/homeMainFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/needAHomeFragment"
         android:name="com.example.meuaumigo.ui.needahome.NeedAHomeFragment"
@@ -37,5 +37,25 @@
     <fragment
         android:id="@+id/lookingForHomeFragment"
         android:name="com.example.meuaumigo.ui.lookingforhome.LookingForHomeFragment"
-        android:label="LookingForHomeFragment" />
+        android:label="LookingForHomeFragment">
+        <action
+            android:id="@+id/action_lookingForHomeFragment_to_homeProfileFragment"
+            app:destination="@id/homeProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.meuaumigo.ui.register.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.meuaumigo.ui.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

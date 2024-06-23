@@ -1,8 +1,14 @@
 package com.example.meuaumigo.model
 
-data class HomePetVO (
-    var petName : String? = "",
-    var petPhone : String? = "",
-    var petDescription : String? = "",
-    var petImg : Int? = 0
+import android.net.Uri
+
+data class HomePetVO(
+    var petName: String? = null,
+    var petSex : String? = null,
+    var petBreed : String? = null,
+    var petSize : String? = null,
+    var petAge : String? = null,
+    var petLocalization : String? = null,
+    var petDescription: String? = "",
+    val petImg : String? = null
 )

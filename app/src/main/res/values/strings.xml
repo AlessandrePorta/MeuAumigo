@@ -3,12 +3,16 @@
 
     <string name="lorem_ipsum">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</string>
 
-    //Login
-    <string name="btn_sign_in">Sign in</string>
-    <string name="btn_log_in">LogIn</string>
-    <string name="forgot_password">Esqueceu a senha?</string>
+    //Login E Cadastro
+    <string name="btn_sign_in">Entrar</string>
+    <string name="btn_register">Cadastrar</string>
+    <string name="forgot_password">Esqueceu a sua senha?</string>
+    <string name="already_have_an_account">Já tem uma conta? <b>Acessar</b></string>
     <string name="email_hint">Digite seu e-mail</string>
     <string name="password_hint">Digite sua senha</string>
+    <string name="confirm_password_hint">Digite novamente sua senha</string>
+    <string name="name_hint">Digite seu nome</string>
+    <string name="phone_hint">Digite seu telefone</string>
 
     //Home
     <string name="bt_take_me_home">Me leva pra casa!</string>
@@ -22,8 +26,16 @@
 
     //LookingForHome
     <string name="looking_for_home_name">Nome do pet</string>
-    <string name="looking_for_home_phone">Telefone do pet</string>
+    <string name="looking_for_home_breed">Raça do pet</string>
+    <string name="looking_for_home_sex">Sexo do pet</string>
+    <string name="looking_for_home_size">Tamanho do pet</string>
+    <string name="looking_for_home_age">Idade do pet</string>
+    <string name="looking_for_home_localization">Localização do pet</string>
     <string name="looking_for_home_description">Descrição do pet</string>
-    <string name="looking_for_home_confirm">Confirmar</string>
+    <string name="looking_for_home_register_pet">Cadastrar</string>
+
+    //Onboarding
+    <string name="onboarding_text_title">Você está a apenas um passo do seu melhor amigo!</string>
+    <string name="onboarding_bt_lets_start">Vamos começar!</string>
 
 </resources>

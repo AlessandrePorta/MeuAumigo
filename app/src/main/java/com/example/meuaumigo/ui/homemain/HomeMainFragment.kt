@@ -32,11 +32,9 @@ class HomeMainFragment : Fragment() {
     private fun init() {
         binding.ivNeedAHomeMe.setOnClickListener {
             findNavController().navigate(R.id.action_homeMainFragment_to_needAHomeFragment)
-            (activity as HomeActivity).setNavigateSelectorInvisible()
         }
         binding.ivLookingForHome.setOnClickListener {
             findNavController().navigate(R.id.action_homeMainFragment_to_lookingForHomeFragment)
-            (activity as HomeActivity).setNavigateSelectorInvisible()
         }
     }
 

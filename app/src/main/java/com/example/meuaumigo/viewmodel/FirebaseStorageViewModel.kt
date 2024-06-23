@@ -15,7 +15,7 @@ class FirebaseStorageViewModel : ViewModel() {
         firebaseStorageRepository.getPets().toLiveData()
     }
 
-    fun fetchPets(){
+    fun fetchPets() {
         _getPets.postValue(Unit)
     }
 

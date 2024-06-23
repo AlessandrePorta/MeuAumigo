@@ -1,120 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/lightblue"
-    >
+    android:background="@color/light_orange">
 
     <ImageView
-        android:id="@+id/ivPetBackground"
+        android:id="@+id/ivPetImg"
         android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:background="@drawable/bottom_circular_field"
-        android:backgroundTint="@color/lightblue_300"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/ic_pet_example"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circular_top_field"
+        android:backgroundTint="@color/light_orange"
+        android:layout_marginTop="245dp"
+        app:layout_constraintTop_toBottomOf="@id/ivPetImg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        >
 
-    <ImageView
-        android:id="@+id/ivPet"
-        android:layout_width="225dp"
-        android:layout_height="225dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_main_pet"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-    <TextView
-        android:id="@+id/ibClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:padding="16dp"
-        android:text="X"
-        android:textSize="35sp"
-        android:textColor="@color/lightblue"
-        android:gravity="center"
-        android:backgroundTint="@color/lightblue_300"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+            <EditText
+                android:id="@+id/etPetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_name"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etPetSex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_sex"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <EditText
+                android:id="@+id/etPetBreed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_breed"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPetName" />
+
+            <EditText
+                android:id="@+id/etPetSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_size"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPetBreed" />
+
+            <EditText
+                android:id="@+id/etPetAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_age"
+                android:inputType="number"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPetSize" />
+
+            <EditText
+                android:id="@+id/etPetLocalization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/circular_data_field"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_localization"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPetAge" />
+
+            <EditText
+                android:id="@+id/etPetDescription"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/circular_data_field"
+                android:gravity="top"
+                android:elevation="5dp"
+                android:fontFamily="@font/baloo2_bold"
+                android:hint="@string/looking_for_home_description"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/light_hint_orange"
+                android:textColorHint="@color/light_hint_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPetLocalization" />
+
+            <Button
+                android:id="@+id/btnRegisterPet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/circular_button_field"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/baloo2_bold"
+                android:text="@string/looking_for_home_register_pet"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/etPetDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    <EditText
-        android:id="@+id/etPetName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circular_field"
-        android:backgroundTint="@color/lightblue_300"
-        app:layout_constraintTop_toBottomOf="@id/ivPetBackground"
-        android:layout_marginHorizontal="48dp"
-        android:layout_marginTop="36dp"
-        android:textColor="@color/white"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp"
-        android:textSize="20sp"
-        android:hint="@string/looking_for_home_name"
-        android:textColorHint="@color/white"
-        android:inputType="text"
-        />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/etPetPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circular_field"
-        android:backgroundTint="@color/lightblue_300"
-        app:layout_constraintTop_toBottomOf="@id/etPetName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp"
-        android:layout_marginHorizontal="48dp"
-        android:layout_marginVertical="24dp"
-        android:hint="@string/looking_for_home_phone"
-        android:textSize="20sp"
-        android:inputType="phone"
-        />
-
-    <EditText
-        android:id="@+id/etPetDescription"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/circular_description_box"
-        android:backgroundTint="@color/lightblue_300"
-        app:layout_constraintTop_toBottomOf="@id/etPetPhone"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp"
-        android:layout_marginHorizontal="48dp"
-        android:layout_marginVertical="24dp"
-        android:hint="@string/looking_for_home_description"
-        android:textSize="20sp"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:inputType="textLongMessage"
-        android:maxLines="4"
-        android:gravity="start"
-        android:textAlignment="textStart"
-        />
-
-    <Button
-        android:id="@+id/btnConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="48dp"
-        android:layout_marginVertical="36dp"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-black"
-        android:background="@drawable/circular_field"
-        android:textColor="@color/lightblue_300"
-        android:text="@string/looking_for_home_confirm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPetDescription"
-        />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

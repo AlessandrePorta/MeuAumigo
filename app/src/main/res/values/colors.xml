@@ -12,4 +12,8 @@
     <color name="lightblue">#BEFEFF</color>
     <color name="lightblue_200">#45BBBD</color>
     <color name="lightblue_300">#2F8081</color>
+    <color name="orange">#FF924A</color>
+    <color name="orange_75_oppac">#BFFF924A</color>
+    <color name="light_orange">#FFF4F0</color>
+    <color name="light_hint_orange">#FFB685</color>
 </resources>

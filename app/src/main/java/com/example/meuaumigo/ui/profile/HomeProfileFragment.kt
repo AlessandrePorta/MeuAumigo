@@ -5,17 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.meuaumigo.databinding.FragmentProfileBinding
-import com.example.meuaumigo.ui.homemain.HomeActivity
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class HomeProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    private lateinit var auth: FirebaseAuth
+    private val args by navArgs<HomeProfileFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,26 +28,21 @@ class HomeProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = Firebase.auth
-
 
         init()
     }
 
     private fun init() {
-        binding.btLogout.setOnClickListener {
-            (activity as HomeActivity).logOut()
-        }
-
         getUserData()
+
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
-    private fun getUserData() {
-        val user = Firebase.auth.currentUser
-        user?.let {
-            binding.tvProfileName.text = it.displayName
-            binding.tvProfileEmail.text = it.email
-        }
+    private fun getUserData() = with(binding) {
+        binding.tvName.text = args.name
+        Glide.with(requireContext()).load(args.img).into(ivProfileImg)
 
     }
 }

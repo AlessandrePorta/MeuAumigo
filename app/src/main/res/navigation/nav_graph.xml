@@ -18,7 +18,17 @@
     <fragment
         android:id="@+id/homeProfileFragment"
         android:name="com.example.meuaumigo.ui.profile.HomeProfileFragment"
-        android:label="HomeProfileFragment" />
+        android:label="HomeProfileFragment">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="localization"
+            app:argType="string" />
+        <argument
+            android:name="img"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.meuaumigo.ui.login.LoginFragment"
@@ -33,15 +43,18 @@
     <fragment
         android:id="@+id/needAHomeFragment"
         android:name="com.example.meuaumigo.ui.needahome.NeedAHomeFragment"
-        android:label="NeedAHomeFragment" />
+        android:label="NeedAHomeFragment" >
+        <action
+            android:id="@+id/action_needAHomeFragment_to_petDetailsFragment"
+            app:destination="@id/petDetailsFragment" />
+        <action
+            android:id="@+id/action_needAHomeFragment_to_homeProfileFragment"
+            app:destination="@id/homeProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/lookingForHomeFragment"
         android:name="com.example.meuaumigo.ui.lookingforhome.LookingForHomeFragment"
-        android:label="LookingForHomeFragment">
-        <action
-            android:id="@+id/action_lookingForHomeFragment_to_homeProfileFragment"
-            app:destination="@id/homeProfileFragment" />
-    </fragment>
+        android:label="LookingForHomeFragment"/>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.meuaumigo.ui.register.RegisterFragment"
@@ -57,5 +70,28 @@
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/petDetailsFragment"
+        android:name="com.example.meuaumigo.ui.petdetails.PetDetailsFragment"
+        android:label="PetDetailsFragment">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="breed"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="string" />
+        <argument
+            android:name="localization"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="img"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -2,6 +2,7 @@ package com.example.meuaumigo.ui.register
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,12 @@ import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentRegisterBinding
 import com.example.meuaumigo.model.UserVO
 import com.example.meuaumigo.ui.homemain.HomeActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.Delay
 
 class RegisterFragment : Fragment() {
 
@@ -76,12 +79,15 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "Digite um telefone válido", Toast.LENGTH_LONG)
                     .show()
             } else {
-                saveData()
                 (activity as HomeActivity).createAccount(
                     binding.etLogin.text.toString(),
                     binding.etPassword.text.toString(),
                     binding.etName.text.toString()
                 )
+                Handler().postDelayed({
+                    saveData()
+                }, 5000)
+
             }
         }
         binding.btnAlreadyHaveAnAccount.setOnClickListener {
@@ -90,24 +96,26 @@ class RegisterFragment : Fragment() {
     }
 
     private fun saveData() {
+        val uidAuth = FirebaseAuth.getInstance().uid!!
         val userId = firebaseRef.push().key!!
+        val name = binding.etName.text.toString()
         val phone = binding.etPhone.text.toString()
         var userVO : UserVO
 
         if(uri != null) {
             uri?.let {
-                fireStorage.child(userId).putFile(it)
+                fireStorage.child(uidAuth).putFile(it)
                     .addOnSuccessListener { task ->
                         task.metadata!!.reference!!.downloadUrl
                             .addOnSuccessListener { url ->
                                 val imgUrl = url.toString()
 
-                                userVO = UserVO(userId, phone, imgUrl)
-                                firebaseRef.child(userId).setValue(userVO)
+                                userVO = UserVO(userId, name, phone, imgUrl)
+                                firebaseRef.child(uidAuth).setValue(userVO)
                                     .addOnCompleteListener {
                                         Toast.makeText(
                                             requireContext(),
-                                            "FUNCIONOU",
+                                            "Conta criada com sucesso!",
                                             Toast.LENGTH_LONG
                                         ).show()
                                     }

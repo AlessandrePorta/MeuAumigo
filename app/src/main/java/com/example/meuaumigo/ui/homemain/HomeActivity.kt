@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.ActivityMainBinding
-import com.example.meuaumigo.viewmodel.FirebaseStorageViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -19,8 +17,6 @@ import com.google.firebase.auth.userProfileChangeRequest
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var viewModel: FirebaseStorageViewModel
 
     private lateinit var auth: FirebaseAuth
 
@@ -45,8 +41,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun init() {
         navController().navigate(R.id.onboardingFragment)
-
-        viewModel = ViewModelProviders.of(this)[FirebaseStorageViewModel::class.java]
     }
 
     fun createAccount(email: String, password: String, name: String) {

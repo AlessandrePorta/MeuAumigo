@@ -69,7 +69,7 @@ class LookingForHomeFragment : Fragment() {
         val userId = firebaseRef.push().key!!
         var petsVO: HomePetVO
 
-        uri?.let{
+        uri.let{
             fireStorage.child(userId).putFile(it)
                 .addOnSuccessListener { task ->
                     task.metadata!!.reference!!.downloadUrl
@@ -89,11 +89,8 @@ class LookingForHomeFragment : Fragment() {
 
                             firebaseRef.child(userId).setValue(petsVO)
                                 .addOnCompleteListener {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Pet adicionado com sucesso!",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText(requireContext(), "Pet adicionado com sucesso!", Toast.LENGTH_LONG).show()
+                                    findNavController().popBackStack()
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(

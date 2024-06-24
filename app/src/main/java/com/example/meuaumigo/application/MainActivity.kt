@@ -8,7 +8,7 @@ class MainActivity : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            modules(networkModule, appModule)
+            modules(networkModule)
         }
     }
 

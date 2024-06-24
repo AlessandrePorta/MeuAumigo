@@ -53,6 +53,7 @@ class NeedAHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userResponse = UserVO("", "", "", "")
         petResponse = arrayListOf()
         init()
     }

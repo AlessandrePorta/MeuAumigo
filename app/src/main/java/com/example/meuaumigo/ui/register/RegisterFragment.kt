@@ -3,6 +3,7 @@ package com.example.meuaumigo.ui.register
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.Delay
 
 class RegisterFragment : Fragment() {
 
@@ -75,9 +75,11 @@ class RegisterFragment : Fragment() {
                     "Senha e confirmação de senha não conferem.",
                     Toast.LENGTH_LONG
                 ).show()
-            } else if(binding.etPhone.text.toString().isNullOrEmpty()) {
+            } else if (binding.etPhone.text.toString().isNullOrEmpty()) {
                 Toast.makeText(requireContext(), "Digite um telefone válido", Toast.LENGTH_LONG)
                     .show()
+            } else if (uri == null) {
+                Toast.makeText(requireContext(), "Selecione uma foto", Toast.LENGTH_LONG).show()
             } else {
                 (activity as HomeActivity).createAccount(
                     binding.etLogin.text.toString(),
@@ -100,53 +102,27 @@ class RegisterFragment : Fragment() {
         val userId = firebaseRef.push().key!!
         val name = binding.etName.text.toString()
         val phone = binding.etPhone.text.toString()
-        var userVO : UserVO
+        var userVO: UserVO
 
-        if(uri != null) {
-            uri?.let {
-                fireStorage.child(uidAuth).putFile(it)
-                    .addOnSuccessListener { task ->
-                        task.metadata!!.reference!!.downloadUrl
-                            .addOnSuccessListener { url ->
-                                val imgUrl = url.toString()
+        uri?.let {
+            fireStorage.child(uidAuth).putFile(it)
+                .addOnSuccessListener { task ->
+                    task.metadata!!.reference!!.downloadUrl
+                        .addOnSuccessListener { url ->
+                            val imgUrl = url.toString()
 
-                                userVO = UserVO(userId, name, phone, imgUrl)
-                                firebaseRef.child(uidAuth).setValue(userVO)
-                                    .addOnCompleteListener {
-                                        Toast.makeText(
-                                            requireContext(),
-                                            "Conta criada com sucesso!",
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                    }
-                                    .addOnFailureListener {
-                                        Toast.makeText(
-                                            requireContext(),
-                                            "error ${it.message}",
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                    }
-                            }
-                    }
-            }
-        } else {
-            userVO = UserVO(userId, phone, null)
-            firebaseRef.child(userId).setValue(userVO)
-                .addOnCompleteListener {
-                    Toast.makeText(
-                        requireContext(),
-                        "FUNCIONOU",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(
-                        requireContext(),
-                        "error ${it.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                            userVO = UserVO(userId, name, phone, imgUrl)
+                            firebaseRef.child(uidAuth).setValue(userVO)
+                                .addOnCompleteListener {
+                                    Log.d("Success", "Conta criada com sucesso")
+                                }
+                                .addOnFailureListener {
+                                    Log.e("Error", "Algo deu errado na criação " + it.message)
+                                }
+                        }
                 }
         }
+
     }
 
 }

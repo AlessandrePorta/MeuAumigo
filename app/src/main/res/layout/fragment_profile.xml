@@ -132,10 +132,8 @@
         android:fontFamily="@font/baloo2_bold"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/clData"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnChangeNameData"
-
         />
 
     <Button

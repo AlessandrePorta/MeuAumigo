@@ -2,7 +2,6 @@ package com.example.meuaumigo.ui.lookingforhome
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.meuaumigo.databinding.FragmentLookingForHomeBinding
 import com.example.meuaumigo.model.HomePetVO
-import com.example.meuaumigo.model.UserVO
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -23,7 +20,7 @@ class LookingForHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentLookingForHomeBinding
 
-    private lateinit var uri: Uri
+    private var uri: Uri? = null
 
     private lateinit var firebaseRef: DatabaseReference
 
@@ -60,16 +57,45 @@ class LookingForHomeFragment : Fragment() {
         }
 
         binding.btnRegisterPet.setOnClickListener {
-            getPetImageData()
+            if (binding.etPetName.text.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Digite o nome", Toast.LENGTH_LONG).show()
+            } else if (binding.etPetSex.text.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Digite o sexo do pet", Toast.LENGTH_LONG).show()
+            } else if (binding.etPetBreed.text.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Digite a raça do pet", Toast.LENGTH_LONG)
+                    .show()
+            } else if (binding.etPetSize.text.toString().isNullOrEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Digite o tamanho do pet",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if (binding.etPetAge.text.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Digite a idade do pet", Toast.LENGTH_LONG)
+                    .show()
+            } else if (binding.etPetLocalization.text.toString().isNullOrEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Digite onde o pet está localizado",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+            } else if (binding.etPetDescription.text.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Digite a descrição do pet", Toast.LENGTH_LONG)
+                    .show()
+            } else if (uri == null) {
+                Toast.makeText(requireContext(), "Selecione uma foto", Toast.LENGTH_LONG).show()
+            } else {
+                getPetImageData()
+            }
         }
-
     }
 
     private fun getPetImageData() {
         val userId = firebaseRef.push().key!!
         var petsVO: HomePetVO
 
-        uri.let{
+        uri?.let {
             fireStorage.child(userId).putFile(it)
                 .addOnSuccessListener { task ->
                     task.metadata!!.reference!!.downloadUrl
@@ -89,7 +115,11 @@ class LookingForHomeFragment : Fragment() {
 
                             firebaseRef.child(userId).setValue(petsVO)
                                 .addOnCompleteListener {
-                                    Toast.makeText(requireContext(), "Pet adicionado com sucesso!", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Pet adicionado com sucesso!",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                     findNavController().popBackStack()
                                 }
                                 .addOnFailureListener {

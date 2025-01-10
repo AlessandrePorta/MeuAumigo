@@ -54,7 +54,11 @@
     <fragment
         android:id="@+id/lookingForHomeFragment"
         android:name="com.example.meuaumigo.ui.lookingforhome.LookingForHomeFragment"
-        android:label="LookingForHomeFragment"/>
+        android:label="LookingForHomeFragment">
+        <action
+            android:id="@+id/action_lookingForHomeFragment_to_homeMainFragment"
+            app:destination="@id/homeMainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.meuaumigo.ui.register.RegisterFragment"

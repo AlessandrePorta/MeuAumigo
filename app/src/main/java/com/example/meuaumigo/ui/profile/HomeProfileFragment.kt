@@ -38,6 +38,11 @@ class HomeProfileFragment : Fragment() {
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.tvRegisterPet.setOnClickListener {
+            findNavController().navigate(HomeProfileFragmentDirections.actionHomeProfileFragmentToLookingForHomeFragment())
+
+        }
     }
 
     private fun getUserData() = with(binding) {

@@ -81,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
-                    navController().navigate(R.id.action_loginFragment_to_homeMainFragment)
+                    navController().navigate(R.id.action_loginFragment_to_needAHomeFragment)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)

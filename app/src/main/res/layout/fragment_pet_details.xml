@@ -142,7 +142,7 @@
         android:background="@drawable/circular_button_field"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/baloo2_bold"
-        android:text="@string/btn_register"
+        android:text="@string/petdetails_button_adopt"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

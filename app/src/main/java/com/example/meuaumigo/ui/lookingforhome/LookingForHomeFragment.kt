@@ -2,6 +2,7 @@ package com.example.meuaumigo.ui.lookingforhome
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.meuaumigo.databinding.FragmentLookingForHomeBinding
 import com.example.meuaumigo.model.HomePetVO
+import com.example.meuaumigo.ui.homemain.HomeActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -95,22 +97,24 @@ class LookingForHomeFragment : Fragment() {
         val userId = firebaseRef.push().key!!
         var petsVO: HomePetVO
 
+        (activity as HomeActivity).showLoading(true)
+
         uri?.let {
             fireStorage.child(userId).putFile(it)
                 .addOnSuccessListener { task ->
                     task.metadata!!.reference!!.downloadUrl
-                        .addOnSuccessListener {
-                            val imgUrl = uri.toString()
+                        .addOnSuccessListener { url ->
+                            val imgUrl = url.toString()
 
                             petsVO = HomePetVO(
-                                binding.etPetName.text.toString(),
-                                binding.etPetSex.text.toString(),
-                                binding.etPetBreed.text.toString(),
-                                binding.etPetSize.text.toString(),
-                                binding.etPetAge.text.toString(),
-                                binding.etPetLocalization.text.toString(),
-                                binding.etPetDescription.text.toString(),
-                                imgUrl
+                                petName = binding.etPetName.text.toString(),
+                                petSex = binding.etPetSex.text.toString(),
+                                petBreed = binding.etPetBreed.text.toString(),
+                                petSize = binding.etPetSize.text.toString(),
+                                petAge = binding.etPetAge.text.toString(),
+                                petLocalization = binding.etPetLocalization.text.toString(),
+                                petDescription = binding.etPetDescription.text.toString(),
+                                petImg = imgUrl
                             )
 
                             firebaseRef.child(userId).setValue(petsVO)
@@ -120,6 +124,7 @@ class LookingForHomeFragment : Fragment() {
                                         "Pet adicionado com sucesso!",
                                         Toast.LENGTH_LONG
                                     ).show()
+                                    (activity as HomeActivity).showLoading(false)
                                     findNavController().popBackStack()
                                 }
                                 .addOnFailureListener {

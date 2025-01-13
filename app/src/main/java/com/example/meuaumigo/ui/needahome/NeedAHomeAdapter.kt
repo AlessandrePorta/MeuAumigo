@@ -21,9 +21,9 @@ class NeedAHomeAdapter(
         val pets = listPet[position]
         holder.apply {
             binding.apply{
-                holder.binding.tvPetName.text = pets.petName
+                tvPetName.text = pets.petName
                 Glide.with(itemView.context).load(pets.petImg).into(img)
-                holder.binding.root.setOnClickListener { onPetClicked(pets) }
+                root.setOnClickListener { onPetClicked(pets) }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.meuaumigo.ui.needahome
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.model.HomePetVO
 import com.example.meuaumigo.model.UserVO
+import com.example.meuaumigo.ui.homemain.HomeActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +38,7 @@ class NeedAHomeFragment : Fragment() {
 
     private lateinit var petResponse: ArrayList<HomePetVO>
 
-    private lateinit var userResponse : UserVO
+    private lateinit var userResponse: UserVO
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +61,7 @@ class NeedAHomeFragment : Fragment() {
     }
 
     private fun init() {
+        (activity as HomeActivity).showLoading(true)
         initAdapter()
         getUserData()
         binding.ivProfileImg.setOnClickListener {
@@ -70,10 +73,18 @@ class NeedAHomeFragment : Fragment() {
         var uid = FirebaseAuth.getInstance().uid!!
         val uidRef = firebaseRfUser.child(uid)
         uidRef.get().addOnSuccessListener {
-            if(it.exists()){
-                userResponse = UserVO(it?.child("id")?.value.toString(), it?.child("name")?.value.toString(), it?.child("phoneNumber")?.value.toString(), it?.child("imgUri")?.value.toString())
+            if (it.exists()) {
+                userResponse = UserVO(
+                    it?.child("id")?.value.toString(),
+                    it?.child("name")?.value.toString(),
+                    it?.child("phoneNumber")?.value.toString(),
+                    it?.child("imgUri")?.value.toString()
+                )
                 binding.tvHomeName.text = it?.child("name")?.value.toString()
-                Glide.with(requireContext()).load(it?.child("imgUri")?.value.toString()).into(binding.ivProfileImg)
+                Glide.with(requireContext()).load(it?.child("imgUri")?.value.toString())
+                    .into(binding.ivProfileImg).request?.isComplete.apply {
+                        (activity as HomeActivity).showLoading(false)
+                    }
             }
         }
     }
@@ -82,26 +93,21 @@ class NeedAHomeFragment : Fragment() {
         val rvList = requireActivity().findViewById<RecyclerView>(R.id.rvNeedAHome)
         rvList.layoutManager = LinearLayoutManager(requireContext())
 
-        firebaseRfPet.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (userSnap in snapshot.children) {
-                        val petData = userSnap.getValue(HomePetVO::class.java)
-                        petResponse.add(petData!!)
-                    }
-                    val mAdapter =
-                        NeedAHomeAdapter(petResponse, onPetClicked = ::navigateToPetDetails)
-                    rvList.adapter = mAdapter
+        firebaseRfPet.get().addOnSuccessListener {
+            if (it.exists()) {
+                for (userSnap in it.children) {
+                    val petData = userSnap.getValue(HomePetVO::class.java)
+                    petResponse.add(petData!!)
                 }
+                val mAdapter =
+                    NeedAHomeAdapter(petResponse, onPetClicked = ::navigateToPetDetails)
+                rvList.adapter = mAdapter
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), error.message, Toast.LENGTH_LONG).show()
-            }
-        })
+        }
     }
 
     private fun navigateToPetDetails(homeVO: HomePetVO) {
+        (activity as HomeActivity).showLoading(true)
         findNavController()
             .navigate(
                 NeedAHomeFragmentDirections.actionNeedAHomeFragmentToPetDetailsFragment(
@@ -116,11 +122,13 @@ class NeedAHomeFragment : Fragment() {
 
     }
 
-    private fun navigateToProfile(){
-        findNavController().navigate(NeedAHomeFragmentDirections.actionNeedAHomeFragmentToHomeProfileFragment(
-            userResponse.name.toString(),
-            img = userResponse.imgUri.toString(),
-            localization = ""
-        ))
+    private fun navigateToProfile() {
+        findNavController().navigate(
+            NeedAHomeFragmentDirections.actionNeedAHomeFragmentToHomeProfileFragment(
+                userResponse.name.toString(),
+                img = userResponse.imgUri.toString(),
+                localization = ""
+            )
+        )
     }
 }

@@ -1,13 +1,14 @@
 package com.example.meuaumigo.ui.homemain
 
-import android.os.Build
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.meuaumigo.R
 import com.example.meuaumigo.databinding.ActivityMainBinding
@@ -33,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
         init()
+        showLoading(false)
     }
 
     public override fun onStart() {
@@ -48,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun createAccount(email: String, password: String, name: String) {
+        showLoading(true)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -61,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
                     updateUI(user)
                     updateUser(user, name)
                     navController().popBackStack()
+                    showLoading(false)
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
@@ -69,11 +73,13 @@ class HomeActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT,
                     ).show()
                     updateUI(null)
+                    showLoading(false)
                 }
             }
     }
 
     fun signIn(email: String, password: String) {
+        showLoading(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -91,6 +97,7 @@ class HomeActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT,
                     ).show()
                     updateUI(null)
+                    showLoading(false)
                 }
             }
     }
@@ -126,4 +133,12 @@ class HomeActivity : AppCompatActivity() {
         private const val TAG = "EmailPassword"
     }
 
+    fun showLoading(isLoaded : Boolean){
+        binding.pbLoad.isVisible = isLoaded
+        binding.fcFragment.isVisible = !isLoaded
+    }
+
+    override fun onBackPressed() {
+        navController().popBackStack()
+    }
 }

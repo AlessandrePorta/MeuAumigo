@@ -44,4 +44,7 @@
     <string name="onboarding_text_title">Você está a apenas um passo do seu melhor amigo!</string>
     <string name="onboarding_bt_lets_start">Vamos começar!</string>
 
+    //PetDetails
+    <string name="petdetails_button_adopt">Adotar!</string>"
+
 </resources>

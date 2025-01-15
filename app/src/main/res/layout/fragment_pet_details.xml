@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/ivBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="24dp"
         android:background="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,28 +27,30 @@
 
     <TextView
         android:id="@+id/tvPetName"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:fontFamily="@font/baloo2_bold"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/ibLike"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivPetImg" />
+        app:layout_constraintTop_toTopOf="@id/ibLike"
+        app:layout_constraintBottom_toBottomOf="@id/ibLike"
+        />
 
     <ImageButton
         android:id="@+id/ibLike"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_like"
         app:layout_constraintEnd_toStartOf="@id/ibShare"
-        app:layout_constraintTop_toTopOf="@id/tvPetName" />
+        app:layout_constraintTop_toBottomOf="@id/ivPetImg" />
 
     <ImageButton
         android:id="@+id/ibShare"
@@ -61,32 +63,33 @@
 
     <TextView
         android:id="@+id/tvPetBreed"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginVertical="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
         android:fontFamily="@font/baloo2_medium"
         android:maxLines="1"
         android:text="@string/lorem_ipsum"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/tvPetName"
-        app:layout_constraintTop_toBottomOf="@id/tvPetName" />
+        app:layout_constraintTop_toBottomOf="@id/ibLike"
+        />
 
     <TextView
         android:id="@+id/tvPetAge"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/baloo2_medium"
         android:maxLines="1"
         android:text="@string/lorem_ipsum"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/tvPetName"
         app:layout_constraintTop_toBottomOf="@id/tvPetBreed" />
 
     <ImageView
         android:id="@+id/ivLocalizationLogo"
-        android:layout_width="25dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_home_localization"
         app:layout_constraintStart_toStartOf="@id/tvPetAge"
         app:layout_constraintTop_toBottomOf="@id/tvPetAge" />
@@ -94,26 +97,29 @@
     <TextView
         android:id="@+id/tvPetLocalization"
         android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/baloo2_bold"
         android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:lines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivLocalizationLogo"
-        app:layout_constraintTop_toTopOf="@id/ivLocalizationLogo" />
+        app:layout_constraintTop_toTopOf="@id/ivLocalizationLogo"
+        app:layout_constraintBottom_toBottomOf="@id/ivLocalizationLogo"
+        />
 
     <TextView
         android:id="@+id/tvDescriptionTitle"
         android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/baloo2_bold"
         android:text="@string/description"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/ibShare"
         app:layout_constraintStart_toStartOf="@id/ivLocalizationLogo"
         app:layout_constraintTop_toBottomOf="@id/ivLocalizationLogo" />
@@ -122,11 +128,11 @@
         android:id="@+id/tvPetDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/baloo2_medium"
         android:text="@string/lorem_ipsum"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:maxLines="2"
         app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="@id/tvDescriptionTitle"

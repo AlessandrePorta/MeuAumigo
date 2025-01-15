@@ -47,4 +47,8 @@
     //PetDetails
     <string name="petdetails_button_adopt">Adotar!</string>"
 
+    //Updates
+    <string name="update_name">Digite o nome que deseja</string>
+    <string name="btn_update_name">Atualizar nome</string>
+
 </resources>

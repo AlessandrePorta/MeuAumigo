@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.meuaumigo.databinding.FragmentProfileBinding
+import com.example.meuaumigo.ui.homemain.HomeActivity
 
 class HomeProfileFragment : Fragment() {
 
@@ -41,13 +42,21 @@ class HomeProfileFragment : Fragment() {
 
         binding.tvRegisterPet.setOnClickListener {
             findNavController().navigate(HomeProfileFragmentDirections.actionHomeProfileFragmentToLookingForHomeFragment())
-
         }
+
+        binding.btnChangeNameData.setOnClickListener {
+            val bottomSheet = ProfileUpdateName()
+            fragmentManager.let {
+                if (it != null) {
+                    bottomSheet.show(it, "Modal")
+                }
+            }
+        }
+
     }
 
     private fun getUserData() = with(binding) {
         binding.tvName.text = args.name
         Glide.with(requireContext()).load(args.img).into(ivProfileImg)
-
     }
 }

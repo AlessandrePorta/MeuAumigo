@@ -57,15 +57,15 @@ class PetDetailsFragment : Fragment() {
             }
         }
         binding.ibShare.setOnClickListener {
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type = "text/plain"
+            val sendIntent = Intent().apply{
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Veja só esse bixinho!!")
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, resources.getText(R.string.project_id))
             startActivity(shareIntent)
         }
         retrieveArgs()
-        Handler().postDelayed({
-            (activity as HomeActivity).showLoading(false)
-        }, 1000)
     }
 
     private fun retrieveArgs() = with(binding){

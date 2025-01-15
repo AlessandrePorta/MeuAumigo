@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeProfileFragment_to_lookingForHomeFragment"
             app:destination="@id/lookingForHomeFragment" />
+        <action
+            android:id="@+id/action_homeProfileFragment_to_profileUpdateName"
+            app:destination="@id/profileUpdateName" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -85,5 +88,13 @@
         <argument
             android:name="img"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileUpdateName"
+        android:name="com.example.meuaumigo.ui.profile.ProfileUpdateName"
+        android:label="ProfileUpdateName"  >
+        <action
+            android:id="@+id/action_profileUpdateName_to_needAHomeFragment"
+            app:destination="@id/needAHomeFragment" />
     </fragment>
 </navigation>

@@ -1,12 +1,11 @@
 package com.example.meuaumigo.ui.needahome
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
-import androidx.compose.animation.core.snap
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,16 +16,9 @@ import com.example.meuaumigo.databinding.FragmentNeedAHomeBinding
 import com.example.meuaumigo.model.HomePetVO
 import com.example.meuaumigo.model.UserVO
 import com.example.meuaumigo.ui.homemain.HomeActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 class NeedAHomeFragment : Fragment() {
 
@@ -39,6 +31,8 @@ class NeedAHomeFragment : Fragment() {
     private lateinit var petResponse: ArrayList<HomePetVO>
 
     private lateinit var userResponse: UserVO
+
+    private var color = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -100,7 +94,7 @@ class NeedAHomeFragment : Fragment() {
                     petResponse.add(petData!!)
                 }
                 val mAdapter =
-                    NeedAHomeAdapter(petResponse, onPetClicked = ::navigateToPetDetails)
+                    NeedAHomeAdapter(petResponse, onPetClicked = ::navigateToPetDetails, onLikeClicked = ::onLikeClicked)
                 rvList.adapter = mAdapter
             }
         }
@@ -130,5 +124,17 @@ class NeedAHomeFragment : Fragment() {
                 localization = ""
             )
         )
+    }
+
+    private fun onLikeClicked(btn : ImageButton){
+        if(color == 0) {
+            btn.setBackgroundResource(R.drawable.ic_like)
+            Toast.makeText(context, "Removido dos favoritos!", Toast.LENGTH_SHORT).show()
+            color = 1
+        } else {
+            btn.setBackgroundResource(R.drawable.ic_like_clicked)
+            Toast.makeText(context, "Adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
+            color = 0
+        }
     }
 }
